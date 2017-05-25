@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript">
+// Puzzle#1 - sum an array of numbers
+// Write a function that takes an array of numbers as input and
+// returns the sum of all the numbers in the array.
+  function arraySum(x) {
+    var sum=0;
+    for(var i=0; i<x.length;i++){
+      sum += x[i];
+    }
+    return sum;
+  }
+  var input=[10,30,21,55];
+  console.log("Sum= of "+input+" = "+arraySum(input)); //116
+  input=[-1,10,-9,0];
+  console.log("Sum= of "+input+" = "+arraySum(input)); //0
+  input=[0];
+  console.log("Sum= of "+input+" = "+arraySum(input)); //0
+  input=[1e+2,1e+2,8e+2];
+  console.log("Sum= of "+input+" = "+arraySum(input)); //1000
+  input=[10,3.5,20,16.5];
+  console.log("Sum= of "+input+" = "+arraySum(input)); //50
+
+  // Puzzle#2 - sum of increments
+  // Write a function that takes a starting value, end value and increment and
+  // returns the sum of all numbers incremented from start up through ending value.
+  // Increment until meeting or exceeding the end value
+    function sumOfIncrements(start,end,inc) {
+      var sum=0;
+      for(var i=start; i<=end;i+=inc){
+        sum+=i;
+      }
+      return sum;
+    }
+    console.log("Sum of numbers = "+sumOfIncrements(3,14,4)); //sum=21 - matches class example
+    console.log("Sum of numbers = "+sumOfIncrements(0,10,10)); //sum=10
+    console.log("Sum of numbers = "+sumOfIncrements(-10,10,10)); //sum=0
+    console.log("Sum of numbers = "+sumOfIncrements(0,10,1)); //sum=55
+    console.log("Sum of numbers = "+sumOfIncrements(1,2,1)); //sum=3
+
+  // Puzzle#3 - min and max values of an array
+  // Write a function that takes an array of numbers and returns the index of the smallest value.
+  // Write a function that takes an array of numbers and returns the index of the largest value.
+  // (In the case of ties, return the lower index.)
+  function idxOfMinValueInArray(x) {
+    var smallest=x[0];
+    var smallestIdx=0;
+    for(var i=1; i<x.length;i++) {
+        // console.log(x[i]);
+      if (x[i] < smallest) {
+        smallest = x[i];
+        smallestIdx=i;
+      }
+    }
+    return smallestIdx;
+  }
+  var input=[10,40,7,2,7,2];
+  console.log("Min Index = "+idxOfMinValueInArray(input)); // 3
+  input=[01,2,3,4,5,6,7,8,9,10];
+  console.log("Min Index = "+idxOfMinValueInArray(input)); // 0
+  input=[0];
+  console.log("Min Index = "+idxOfMinValueInArray(input)); // 0
+  input=[-1,5,7,0,25,-10];
+  console.log("Min Index = "+idxOfMinValueInArray(input)); // 0
+
+  function idxOfMaxValueInArray(x) {
+    var largest=x[0];
+    var largestIdx=0;
+    for(var i=1; i<x.length;i++) {
+        // console.log(x[i]);
+      if (x[i] > largest) {
+        largest = x[i];
+        largestIdx=i;
+      }
+    }
+    return largestIdx;
+  }
+  var input=[10,40,7,2,7,2];
+  console.log("Max Index = "+idxOfMaxValueInArray(input)); // 1
+  input=[01,2,3,4,5,6,7,8,9,10];
+  console.log("Max Index = "+idxOfMaxValueInArray(input)); // 9
+  input=[0];
+  console.log("Max Index = "+idxOfMaxValueInArray(input)); // 0
+  input=[-1,5,7,0,25,-10];
+  console.log("Max Index = "+idxOfMaxValueInArray(input)); // 4
+
+  // Puzzle#4 - repeat a starting
+  // Write a function that takes a string and a positive integer and
+  // returns a new string which is the input string repeated the specified
+  // number of times
+  function concatStr(s,iter) {
+  var repeatStr="";
+    if (iter <= 0){
+      console.log("Please enter a positive integr.")
+      return repeatStr;
+    }
+    else {
+      for(var i=1; i<=iter; i++)
+          repeatStr+=s;
+    }
+    return repeatStr;
+  }
+  console.log(concatStr("x",5)); //xxxxx
+  console.log(concatStr("Glen",3)); //GlenGlenGlen
+  console.log(concatStr("y",20)); //yyyyyyyyyyyyyyyyyyyy
+  console.log(concatStr("AB C  D",3)); //Glen
+  console.log(concatStr("Glen",1)); //Glen
+  console.log(concatStr("Glen",-1)); // Please enter a positive integr
+
+  // Puzzle#5 - find the factors of an integer
+  // Write a function that takes an integer and returns an array
+  // of its factors (the other integers by which it's evenly divisible)
+  function factors(int) {
+    var result=[];
+    var idx=0;
+    console.log("Factors of "+int+" are:");
+    for(var i=2; i<int; i++) { //1 and number itself are factors, but exlcuding per assignement
+      if(int % i === 0) {
+          result[idx]=i;
+          idx++;
+        };
+    }
+    return result;
+  }
+  console.log((factors(18))); //[2,3,6,9]  exercise example
+  console.log((factors(4))); //[2]
+  console.log((factors(60))); //[2,3,4,5,6,10,12,15,20,30]
+  console.log((factors(5))); //empty array because 5 is prime
+
+  // Puzzle#6 - random number within a range
+  // Write a function that takes two numbers and returns
+  // a random number within range of the two numbers
+  function getRandomNum(min,max) {
+    while (true) {
+      var returnVal=Math.floor(Math.random() * (max - min + 1)) + min;
+      if ((returnVal >= min) && (returnVal<=max)) {
+        return returnVal;
+      }
+    }
+  }
+  console.log("Random number = "+getRandomNum(3.4,8.4));
+  console.log("Random number = "+getRandomNum(2,5));
+  console.log("Random number = "+getRandomNum(1,4));
+  console.log("Random number = "+getRandomNum(1,4));
+  console.log("Random number = "+getRandomNum(1.5,5));
+
+  // Puzzle#7 - random element from an array
+  // Write a function that takes an array and returns
+  // a random element from the array
+  function getRandomElementFromArray(a) {
+        return a[Math.floor(Math.random() * a.length)];
+  }
+  console.log(getRandomElementFromArray([6,2,8]));
+  console.log(getRandomElementFromArray([6,2,8]));
+  console.log(getRandomElementFromArray([6,2,8]));
+  console.log(getRandomElementFromArray([1,-10,5,20,0]));
+  console.log(getRandomElementFromArray([1,-10,5,20,0]));
+
+  // Puzzle#8 - Count occurrences of a character in a string
+  // Write a function that takes two strings, the second with just one character.
+  // Return the number of times the character is found in the first string
+  function countChar(x,y) {
+    cnt=0;
+    temp="";
+    for(i=0;i<=x.length;i++){
+      if(x.charAt(i)===y){
+        cnt+=1;
+      }
+    }
+    return(cnt);
+  }
+  console.log(countChar("Java Class is Great","J"));  //1
+  console.log(countChar("Java Class is Great","a")); //4
+  console.log(countChar("Java Class is Great","g")); //0
+  console.log(countChar("GGGGGGGGGGGGG","G")); //13
+  console.log(countChar("Target Toads Rot","T")); //2
+  console.log(countChar("","T")); //0
+  console.log(countChar("There are spaces in this sentence."," ")); //5
+
+  // Puzzle#9 - most repetitions of a character
+  // Write a function that takes a string and returns an object with the character
+  // which is repeated most and the number of times it is repeated
+  function getCountOfRepeatingChar(s) {
+    var cnt = 0;
+    var returnObj={}; //object to build up with the chars in the input string
+    var maxCnt = 0;
+    var maxList = [];  //an array to hold if multiple chars are tied for tally count
+    for (i in s){  //build up the object with unique chars and tally a count
+      // console.log(s[i]);
+      if(s[i] in returnObj){
+        returnObj[s[i]]++;  //increment value for the associated key
+      }
+      else{
+        returnObj[s[i]] = 1; //first time char found set to 1
+      }
+    }
+    for (char in returnObj){
+      if(returnObj[char]>maxCnt){
+        maxCnt=returnObj[char]; //get the count from the key value pair
+        maxList = [char]; //new char with a max count so clear out any prior
+      }
+      else if (returnObj[char]===maxCnt){
+        maxList.push(char);  //another char with same max so store that in array
+      }
+    }
+    return {
+      chars : maxList,
+      count : maxCnt
+    };
+  }
+  console.log(getCountOfRepeatingChar('Rubber')); // b 2
+  console.log(getCountOfRepeatingChar('aabbbccdddeeff')); // b 2 3
+  console.log(getCountOfRepeatingChar('a')); // a 1
+  console.log(getCountOfRepeatingChar('The  z')); // " "  2
+
+  // Puzzle#10 - join together arrays within an array
+  // Write a function that takes an array of arrays and
+  // returns a new array which is the concatenation of all the arrays.
+function joinArrays(a) {
+  newArray=[];
+  for(var x =0;x<a.length;x++){
+    var innerArray = a[x];
+    for (y=0;y<innerArray.length;y++){
+      newArray.push(innerArray[y]);
+      // console.log(newArray);
+    }
+  }
+  return newArray;
+}
+console.log(joinArrays([[1,2,3],[4,5,6]])); //[1, 2, 3, 4, 5, 6]
+console.log(joinArrays([[4, 2, 5], ["hi", 8], [], [8, 9, 1, 4]])); //[4, 2, 5, "hi", 8, 8, 9, 1, 4]
+
+// Puzzle#11 - palindromes
+// Write a function that takes a string and returns true if the string is a palindrome
+// and returns false if not
+function palindromes(s) {
+  var returnval=true;
+  var revCnt=s.length-1; //counter to traverse array backwards
+  if (s.length<=1){
+    return true;
+  }
+  for (x=0; x<s.length;x++){
+    if (s[x].toLowerCase()===s[revCnt-x].toLowerCase()){
+      continue;
+    } else {
+      return(false);
+    }
+  }
+  return returnval;
+}
+console.log(palindromes('Anna')); //true
+console.log(palindromes('Good')); //false
+console.log(palindromes('%good doog%')); //true
+console.log(palindromes('f'));//true
+console.log(palindromes(''));//true
+console.log(palindromes('RaceCar'));//true
+console.log(palindromes('ABCDEDCBA'));//true
+console.log(palindromes('ABCEDDCBA'));//false
+
+// Puzzle#12 - title case
+// Write a function that, given a string, returns a new
+// string with the text in 'title case'. For example,
+// given the string "I like pizza.", return the string `"I Like Pizza.".
+function titleCase(s) {
+  return(s.toUpperCase());
+}
+console.log(titleCase("I like pizza.")); //I LIKE PIZZA.
+console.log(titleCase("")); //
+console.log(titleCase(" ")); //" "
+console.log(titleCase("I LIKE PIZZA!")); //I LIKE PIZZA!
+
+// Puzzle#13 - blend colors
+// Write a function that takes an array of colors and returns
+// a single color which is the blend of the colors in the array.
+// (Most commonly, such color values are unsigned 8-bit integers,
+// but for our purposes they can be any positive numbers.)
+function blendColors(a) {
+  var redCnt = 0,blueCnt = 0,greenCnt = 0;
+  for(i=0;i<a.length;i++){
+    redCnt+=a[i].red;
+    greenCnt+=a[i].green;
+    blueCnt+=a[i].blue;
+  }
+  // round any counts so as to return a positive number per the exercise instructions
+  return [Math.round(redCnt/a.length),Math.round(greenCnt/a.length),Math.round(blueCnt/a.length)];
+}
+// result should be red avg=4; green avg=6; blue avg=3
+console.log(blendColors([{red:6,blue:3,green:1},{red:2,blue:5,green:4},{red:4,blue:1,green:13}]));
+// result should be red avg=2; green avg=5; blue avg=10
+console.log(blendColors([{red:2,blue:10,green:5}]));
+
+
+// Puzzle#14 - same values in any order
+// Write a function that takes two arrays. If the two arrays contain all of the same values (but not
+// necessarily in the same order), return true, and otherwise return false
+function equalArrayCheck(a1,a2) {
+  if ( a1.length !== a2.length ) {
+    return false; //arrays not equal size so can't contain all the same values
+  }
+    var cnt = 0, maxCnt = 0;
+    var a1Obj={}, a2Obj={};
+    var maxList = [];
+  for (i in a1){  //build up the object for the first array
+    if(a1[i] in a1Obj){
+      a1Obj[a1[i]]++;  }
+    else{
+      a1Obj[a1[i]] = 1;
+    }
+  }
+  for (j in a2){  //build up the object for the 2nd array
+    if(a2[j] in a2Obj){
+      a2Obj[a2[j]]++; }
+    else{
+      a2Obj[a2[j]] = 1; //first time char found set to 1
+    }
+  }
+    var flag=false;
+    for (char in a1Obj){
+      if(a1Obj[char]===a2Obj[char]){
+        flag=true;
+      }
+      else {
+        return false;
+      }
+    }
+  return flag;
+}
+console.log(equalArrayCheck([3, 7, 9, 0],[0, 9, 7, 3])); //true
+console.log(equalArrayCheck([8, "hi", 2],[8, 2])); //false
+console.log(equalArrayCheck([8, "hi", 2],[8, 3, "hi"])); //false
+console.log(equalArrayCheck([8, 8, 2],[8, 2, 2])); // false
+console.log(equalArrayCheck([" ", 8, 8,0],[0, 8, " ", 8])); // true
+
+  </script>
+</head>
+
+<body>
+</body>
+</html>
